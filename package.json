@@ -1,0 +1,83 @@
+{
+  "name": "quackelements",
+  "version": "0.1.0-alpha.1",
+  "description": "Open-source React component source installer by QuackBytes and Sezer Alaca",
+  "type": "module",
+  "bin": {
+    "quackelements": "./bin/quackelements.js",
+    "qe": "./bin/quackelements.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "registry",
+    "README.md",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "scripts": {
+    "test": "node --test",
+    "check": "node --check bin/quackelements.js && node --check src/cli.js && node --check src/config.js && node --check src/installer.js && node --check scripts/sync-workbench.js",
+    "sync": "node scripts/sync-workbench.js",
+    "workbench:build": "npm --prefix workbench run build",
+    "verify": "npm run check && npm test && npm --prefix workbench run lint && npm run workbench:build",
+    "prepack": "npm run check && npm test"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "components",
+    "design-system",
+    "ui",
+    "react",
+    "typescript",
+    "tailwindcss",
+    "base-ui",
+    "source-code",
+    "cli"
+  ],
+  "author": {
+    "name": "Sezer Alaca",
+    "email": "ahmetsezeralaca@gmail.com",
+    "url": "https://sezeralaca.dev"
+  },
+  "contributors": [
+    {
+      "name": "QuackBytes",
+      "url": "https://quackbytes.com"
+    }
+  ],
+  "homepage": "https://quackbytes.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QuackBytes/QuackElements.git"
+  },
+  "bugs": {
+    "url": "https://github.com/QuackBytes/QuackElements/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "tag": "alpha"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@base-ui/react": "^1.8.0",
+    "@fontsource-variable/outfit": "^5.3.0",
+    "@fontsource-variable/roboto": "^5.3.0",
+    "class-variance-authority": "^0.7.1",
+    "cmdk": "^1.1.1",
+    "date-fns": "^4.4.0",
+    "embla-carousel-react": "^8.6.0",
+    "input-otp": "^1.5.0",
+    "lucide-react": "^1.46.0",
+    "react-day-picker": "^10.0.1",
+    "react-resizable-panels": "^4.12.4",
+    "recharts": "^3.8.0",
+    "tw-animate-css": "^1.4.0"
+  },
+  "peerDependencies": {
+    "react": ">=19",
+    "react-dom": ">=19",
+    "tailwindcss": ">=4"
+  }
+}

@@ -1,0 +1,862 @@
+{
+  "name": "quackelements",
+  "version": 1,
+  "preset": "b2tqESkd9c",
+  "items": [
+    {
+      "name": "accordion",
+      "type": "component",
+      "description": "QuackElements Accordion component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "accordion.tsx",
+          "target": "accordion.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "alert",
+      "type": "component",
+      "description": "QuackElements Alert component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "alert.tsx",
+          "target": "alert.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "alert-dialog",
+      "type": "component",
+      "description": "QuackElements Alert Dialog component.",
+      "dependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "source": "alert-dialog.tsx",
+          "target": "alert-dialog.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "aspect-ratio",
+      "type": "component",
+      "description": "QuackElements Aspect Ratio component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "aspect-ratio.tsx",
+          "target": "aspect-ratio.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "attachment",
+      "type": "component",
+      "description": "QuackElements Attachment component.",
+      "dependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "source": "attachment.tsx",
+          "target": "attachment.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "avatar",
+      "type": "component",
+      "description": "QuackElements Avatar component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "avatar.tsx",
+          "target": "avatar.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "component",
+      "description": "QuackElements Badge component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "badge.tsx",
+          "target": "badge.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "breadcrumb",
+      "type": "component",
+      "description": "QuackElements Breadcrumb component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "breadcrumb.tsx",
+          "target": "breadcrumb.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "bubble",
+      "type": "component",
+      "description": "QuackElements Bubble component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "bubble.tsx",
+          "target": "bubble.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "component",
+      "description": "QuackElements Button component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "button.tsx",
+          "target": "button.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "button-group",
+      "type": "component",
+      "description": "QuackElements Button Group component.",
+      "dependencies": [
+        "separator"
+      ],
+      "files": [
+        {
+          "source": "button-group.tsx",
+          "target": "button-group.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "calendar",
+      "type": "component",
+      "description": "QuackElements Calendar component.",
+      "dependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "source": "calendar.tsx",
+          "target": "calendar.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "component",
+      "description": "QuackElements Card component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "card.tsx",
+          "target": "card.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "carousel",
+      "type": "component",
+      "description": "QuackElements Carousel component.",
+      "dependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "source": "carousel.tsx",
+          "target": "carousel.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "chart",
+      "type": "component",
+      "description": "QuackElements Chart component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "chart.tsx",
+          "target": "chart.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "component",
+      "description": "QuackElements Checkbox component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "checkbox.tsx",
+          "target": "checkbox.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "collapsible",
+      "type": "component",
+      "description": "QuackElements Collapsible component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "collapsible.tsx",
+          "target": "collapsible.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "combobox",
+      "type": "component",
+      "description": "QuackElements Combobox component.",
+      "dependencies": [
+        "button",
+        "input-group"
+      ],
+      "files": [
+        {
+          "source": "combobox.tsx",
+          "target": "combobox.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "command",
+      "type": "component",
+      "description": "QuackElements Command component.",
+      "dependencies": [
+        "dialog",
+        "input-group"
+      ],
+      "files": [
+        {
+          "source": "command.tsx",
+          "target": "command.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "context-menu",
+      "type": "component",
+      "description": "QuackElements Context Menu component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "context-menu.tsx",
+          "target": "context-menu.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "dialog",
+      "type": "component",
+      "description": "QuackElements Dialog component.",
+      "dependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "source": "dialog.tsx",
+          "target": "dialog.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "direction",
+      "type": "component",
+      "description": "QuackElements Direction component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "direction.tsx",
+          "target": "direction.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "drawer",
+      "type": "component",
+      "description": "QuackElements Drawer component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "drawer.tsx",
+          "target": "drawer.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "component",
+      "description": "QuackElements Dropdown Menu component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "dropdown-menu.tsx",
+          "target": "dropdown-menu.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "empty",
+      "type": "component",
+      "description": "QuackElements Empty component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "empty.tsx",
+          "target": "empty.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "field",
+      "type": "component",
+      "description": "QuackElements Field component.",
+      "dependencies": [
+        "label",
+        "separator"
+      ],
+      "files": [
+        {
+          "source": "field.tsx",
+          "target": "field.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "hover-card",
+      "type": "component",
+      "description": "QuackElements Hover Card component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "hover-card.tsx",
+          "target": "hover-card.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "component",
+      "description": "QuackElements Input component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "input.tsx",
+          "target": "input.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "input-group",
+      "type": "component",
+      "description": "QuackElements Input Group component.",
+      "dependencies": [
+        "button",
+        "input",
+        "textarea"
+      ],
+      "files": [
+        {
+          "source": "input-group.tsx",
+          "target": "input-group.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "input-otp",
+      "type": "component",
+      "description": "QuackElements Input Otp component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "input-otp.tsx",
+          "target": "input-otp.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "item",
+      "type": "component",
+      "description": "QuackElements Item component.",
+      "dependencies": [
+        "separator"
+      ],
+      "files": [
+        {
+          "source": "item.tsx",
+          "target": "item.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "kbd",
+      "type": "component",
+      "description": "QuackElements Kbd component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "kbd.tsx",
+          "target": "kbd.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "label",
+      "type": "component",
+      "description": "QuackElements Label component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "label.tsx",
+          "target": "label.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "marker",
+      "type": "component",
+      "description": "QuackElements Marker component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "marker.tsx",
+          "target": "marker.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "menubar",
+      "type": "component",
+      "description": "QuackElements Menubar component.",
+      "dependencies": [
+        "dropdown-menu"
+      ],
+      "files": [
+        {
+          "source": "menubar.tsx",
+          "target": "menubar.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "message",
+      "type": "component",
+      "description": "QuackElements Message component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "message.tsx",
+          "target": "message.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "message-scroller",
+      "type": "component",
+      "description": "QuackElements Message Scroller component.",
+      "dependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "source": "message-scroller.tsx",
+          "target": "message-scroller.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "native-select",
+      "type": "component",
+      "description": "QuackElements Native Select component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "native-select.tsx",
+          "target": "native-select.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "navigation-menu",
+      "type": "component",
+      "description": "QuackElements Navigation Menu component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "navigation-menu.tsx",
+          "target": "navigation-menu.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "pagination",
+      "type": "component",
+      "description": "QuackElements Pagination component.",
+      "dependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "source": "pagination.tsx",
+          "target": "pagination.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "popover",
+      "type": "component",
+      "description": "QuackElements Popover component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "popover.tsx",
+          "target": "popover.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "progress",
+      "type": "component",
+      "description": "QuackElements Progress component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "progress.tsx",
+          "target": "progress.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "questionnaire",
+      "type": "component",
+      "description": "QuackElements Questionnaire component.",
+      "dependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "source": "questionnaire.tsx",
+          "target": "questionnaire.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "radio-group",
+      "type": "component",
+      "description": "QuackElements Radio Group component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "radio-group.tsx",
+          "target": "radio-group.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "resizable",
+      "type": "component",
+      "description": "QuackElements Resizable component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "resizable.tsx",
+          "target": "resizable.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "scroll-area",
+      "type": "component",
+      "description": "QuackElements Scroll Area component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "scroll-area.tsx",
+          "target": "scroll-area.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "select",
+      "type": "component",
+      "description": "QuackElements Select component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "select.tsx",
+          "target": "select.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "component",
+      "description": "QuackElements Separator component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "separator.tsx",
+          "target": "separator.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "sheet",
+      "type": "component",
+      "description": "QuackElements Sheet component.",
+      "dependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "source": "sheet.tsx",
+          "target": "sheet.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "sidebar",
+      "type": "component",
+      "description": "QuackElements Sidebar component.",
+      "dependencies": [
+        "button",
+        "input",
+        "separator",
+        "sheet",
+        "skeleton",
+        "tooltip",
+        "use-mobile"
+      ],
+      "files": [
+        {
+          "source": "sidebar.tsx",
+          "target": "sidebar.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "component",
+      "description": "QuackElements Skeleton component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "skeleton.tsx",
+          "target": "skeleton.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "slider",
+      "type": "component",
+      "description": "QuackElements Slider component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "slider.tsx",
+          "target": "slider.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "spinner",
+      "type": "component",
+      "description": "QuackElements Spinner component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "spinner.tsx",
+          "target": "spinner.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "component",
+      "description": "QuackElements Switch component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "switch.tsx",
+          "target": "switch.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "table",
+      "type": "component",
+      "description": "QuackElements Table component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "table.tsx",
+          "target": "table.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "component",
+      "description": "QuackElements Tabs component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "tabs.tsx",
+          "target": "tabs.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "textarea",
+      "type": "component",
+      "description": "QuackElements Textarea component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "textarea.tsx",
+          "target": "textarea.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "toast",
+      "type": "component",
+      "description": "QuackElements Toast component.",
+      "dependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "source": "toast.tsx",
+          "target": "toast.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "toggle",
+      "type": "component",
+      "description": "QuackElements Toggle component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "toggle.tsx",
+          "target": "toggle.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "toggle-group",
+      "type": "component",
+      "description": "QuackElements Toggle Group component.",
+      "dependencies": [
+        "toggle"
+      ],
+      "files": [
+        {
+          "source": "toggle-group.tsx",
+          "target": "toggle-group.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "component",
+      "description": "QuackElements Tooltip component.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "tooltip.tsx",
+          "target": "tooltip.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "use-mobile",
+      "type": "hook",
+      "description": "QuackElements Use Mobile hook.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "use-mobile.ts",
+          "target": "use-mobile.ts",
+          "targetRoot": "hooks"
+        }
+      ]
+    }
+  ]
+}
