@@ -19,6 +19,18 @@ npx quackelements init
 npx quackelements add button
 ```
 
+`init` asks you to choose a color theme:
+
+- **Default** — warm yellow with restrained orange accents.
+- **Monochrome** — black, gray, and off-white.
+
+For CI or scripted setup, pass the selection directly:
+
+```bash
+npx quackelements init --theme default
+npx quackelements init --theme monochrome
+```
+
 Install the complete component catalog when you need it:
 
 ```bash
@@ -46,16 +58,20 @@ You can also use the short executable: `npx qe add button`.
 ## Commands
 
 ```text
-quackelements init [--force]
+quackelements init [--theme default|monochrome] [--force]
 quackelements add <component...> [--overwrite]
 quackelements add --all [--overwrite]
 quackelements list
 quackelements doctor
 ```
 
-Project paths are controlled by the generated `quackelements.json` file.
+Project paths and the selected theme are controlled by the generated `quackelements.json` file. Theme tokens are installed into `src/styles/quack-theme.css`, so teams can tune the selected palette without editing component source.
 
 Generated components can depend on packages such as Base UI, Lucide and date-fns. Installing QuackElements installs the catalog's declared dependencies; the generated component files themselves remain in your repository and are yours to edit.
+
+### Why Base UI?
+
+Base UI supplies unstyled accessibility and interaction primitives for complex controls such as dialogs, menus, tabs, and comboboxes. QuackElements owns the visual language, semantic tokens, generated component API, and CLI workflow. This keeps keyboard and screen-reader behavior dependable without importing another product's design system.
 
 ## Component workbench
 

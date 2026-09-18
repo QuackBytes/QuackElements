@@ -35,6 +35,7 @@ Dependencies only point down the list. Domain-specific business behavior stays i
 The CLI owns:
 
 - Configuration discovery and validation.
+- Interactive and flag-driven theme selection during initialization.
 - Component discovery.
 - Safe file installation.
 - Local-change protection.

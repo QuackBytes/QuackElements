@@ -13,6 +13,7 @@ export async function getRegistry() {
 
 export async function installFoundation(cwd, config, { overwrite = false } = {}) {
   const styleDirectory = path.dirname(path.join(cwd, config.paths.styles));
+  const theme = config.theme ?? "default";
   const files = [
     {
       source: path.join(registryRoot, "foundation", "quack-elements.css"),
@@ -21,6 +22,10 @@ export async function installFoundation(cwd, config, { overwrite = false } = {})
     {
       source: path.join(registryRoot, "foundation", "quack-tailwind.css"),
       target: path.join(styleDirectory, "quack-tailwind.css")
+    },
+    {
+      source: path.join(registryRoot, "foundation", "themes", `${theme}.css`),
+      target: path.join(styleDirectory, "quack-theme.css")
     },
     {
       source: path.join(registryRoot, "foundation", "quack-elements.ts"),

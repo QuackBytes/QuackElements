@@ -1,0 +1,69 @@
+/* QuackElements Monochrome — neutral black, gray, and off-white. */
+:root {
+  --background: oklch(0.98 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: var(--foreground);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--foreground);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.94 0 0);
+  --secondary-foreground: var(--foreground);
+  --muted: oklch(0.955 0 0);
+  --muted-foreground: oklch(0.49 0 0);
+  --accent: oklch(0.92 0 0);
+  --accent-foreground: var(--foreground);
+  --destructive: oklch(0.58 0.2 27);
+  --border: oklch(0.86 0 0);
+  --input: oklch(0.86 0 0);
+  --ring: oklch(0.55 0 0);
+  --chart-1: oklch(0.82 0 0);
+  --chart-2: oklch(0.68 0 0);
+  --chart-3: oklch(0.54 0 0);
+  --chart-4: oklch(0.4 0 0);
+  --chart-5: oklch(0.26 0 0);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.965 0 0);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: oklch(0.92 0 0);
+  --sidebar-accent-foreground: var(--foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
+}
+
+.dark {
+  --background: oklch(0.09 0 0);
+  --foreground: oklch(0.94 0 0);
+  --card: oklch(0.135 0 0);
+  --card-foreground: var(--foreground);
+  --popover: oklch(0.14 0 0);
+  --popover-foreground: var(--foreground);
+  --primary: oklch(0.92 0 0);
+  --primary-foreground: oklch(0.13 0 0);
+  --secondary: oklch(0.2 0 0);
+  --secondary-foreground: var(--foreground);
+  --muted: oklch(0.18 0 0);
+  --muted-foreground: oklch(0.64 0 0);
+  --accent: oklch(0.23 0 0);
+  --accent-foreground: var(--foreground);
+  --destructive: oklch(0.66 0.18 27);
+  --border: oklch(0.255 0 0);
+  --input: oklch(0.28 0 0);
+  --ring: oklch(0.68 0 0);
+  --chart-1: oklch(0.86 0 0);
+  --chart-2: oklch(0.7 0 0);
+  --chart-3: oklch(0.56 0 0);
+  --chart-4: oklch(0.42 0 0);
+  --chart-5: oklch(0.3 0 0);
+  --sidebar: oklch(0.11 0 0);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: oklch(0.2 0 0);
+  --sidebar-accent-foreground: var(--foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
+}

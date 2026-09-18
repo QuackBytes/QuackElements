@@ -1,6 +1,7 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
-import { CONFIG_FILE, DEFAULT_CONFIG, exists, loadConfig, saveDefaultConfig } from "./config.js";
+import { createInterface } from "node:readline/promises";
+import { CONFIG_FILE, exists, loadConfig, saveDefaultConfig, validateTheme } from "./config.js";
 import { getRegistry, installFoundation, installItems } from "./installer.js";
 
 const packageJson = JSON.parse(
@@ -14,7 +15,7 @@ export async function run(argv, options = {}) {
 
   switch (command) {
     case "init":
-      await init(cwd, args);
+      await init(cwd, args, options);
       break;
     case "add":
       await add(cwd, args);
@@ -40,7 +41,7 @@ export async function run(argv, options = {}) {
   }
 }
 
-async function init(cwd, args) {
+async function init(cwd, args, options) {
   const overwrite = args.includes("--force");
   const packagePath = path.join(cwd, "package.json");
 
@@ -48,14 +49,63 @@ async function init(cwd, args) {
     throw new Error("No package.json found. Run this command inside a JavaScript project.");
   }
 
-  const configResult = await saveDefaultConfig(cwd, { overwrite });
-  const config = configResult.status === "kept" ? await loadConfig(cwd) : DEFAULT_CONFIG;
+  const configExists = await exists(path.join(cwd, CONFIG_FILE));
+  const requestedTheme = readOption(args, "--theme");
+  if (requestedTheme) validateTheme(requestedTheme);
+
+  let theme = requestedTheme;
+  if (!theme && (!configExists || overwrite)) {
+    theme = await chooseTheme(options.promptTheme);
+  }
+
+  const configResult = await saveDefaultConfig(cwd, { overwrite, theme: theme ?? "default" });
+  const config = await loadConfig(cwd);
   const foundationResults = await installFoundation(cwd, config, { overwrite });
 
-  console.log("QuackElements initialized.\n");
+  console.log(`QuackElements initialized with the ${formatTheme(config.theme)} theme.\n`);
   printFileResult(configResult, cwd);
   for (const result of foundationResults) printFileResult(result, cwd);
   console.log(`\nImport \"${config.paths.styles}\" once in your application entry file.`);
+}
+
+async function chooseTheme(promptTheme) {
+  if (promptTheme) {
+    const theme = await promptTheme();
+    validateTheme(theme);
+    return theme;
+  }
+
+  if (!process.stdin.isTTY || !process.stdout.isTTY) return "default";
+
+  const terminal = createInterface({ input: process.stdin, output: process.stdout });
+  try {
+    console.log("Choose a QuackElements color theme:\n");
+    console.log("  1. Default     Warm yellow and orange accents");
+    console.log("  2. Monochrome  Black, gray, and off-white\n");
+    const answer = (await terminal.question("Theme [1]: ")).trim().toLowerCase();
+    if (["2", "monochrome", "mono"].includes(answer)) return "monochrome";
+    if (["", "1", "default"].includes(answer)) return "default";
+    throw new Error(`Unknown theme selection "${answer}".`);
+  } finally {
+    terminal.close();
+  }
+}
+
+function readOption(args, name) {
+  const inline = args.find((arg) => arg.startsWith(`${name}=`));
+  if (inline) return inline.slice(name.length + 1);
+
+  const index = args.indexOf(name);
+  if (index === -1) return undefined;
+  const value = args[index + 1];
+  if (!value || value.startsWith("--")) {
+    throw new Error(`${name} requires a value.`);
+  }
+  return value;
+}
+
+function formatTheme(theme) {
+  return theme === "monochrome" ? "Monochrome" : "Default";
 }
 
 async function add(cwd, args) {
@@ -97,7 +147,9 @@ async function doctor(cwd) {
 
   if (checks[1][1]) {
     const config = await loadConfig(cwd);
+    checks.push([`Theme: ${formatTheme(config.theme)}`, true]);
     checks.push([config.paths.styles, await exists(path.join(cwd, config.paths.styles))]);
+    checks.push(["Theme tokens", await exists(path.join(cwd, path.dirname(config.paths.styles), "quack-theme.css"))]);
     checks.push([config.paths.utils, await exists(path.join(cwd, config.paths.utils))]);
   }
 
@@ -129,7 +181,7 @@ function printHelp() {
   console.log(`QuackElements ${VERSION}
 
 Usage:
-  quackelements init [--force]
+  quackelements init [--theme default|monochrome] [--force]
   quackelements add <component...> [--overwrite]
   quackelements add --all [--overwrite]
   quackelements list
