@@ -6,12 +6,31 @@
 
 ## Requirements
 
-- Node.js 20 or newer
+- Node.js 20.19 or newer
 - React 19 or newer
 - Tailwind CSS 4
 - A TypeScript path alias for `@/*`
 
-## Install
+## Create a project
+
+Start a complete Next.js or Vite project with an interactive setup:
+
+```bash
+npx quackelements@latest create
+```
+
+The CLI asks for the project name, framework, TypeScript or JavaScript, color theme, and how much of the catalog to install. The same flow starts when `init` is run in an empty directory.
+
+For automated setup:
+
+```bash
+npx quackelements@latest create my-app --template next --language tsx --theme default --install recommended --yes
+npx quackelements@latest create my-vite-app --template vite --language jsx --theme monochrome --install all --yes
+```
+
+Supported package managers are npm, pnpm, Yarn, and Bun. The CLI detects the package manager used to launch it.
+
+## Configure an existing project
 
 ```bash
 npm install --save-dev quackelements@alpha
@@ -20,7 +39,7 @@ npx quackelements add button
 npx quackelements add aether-grid
 ```
 
-`init` asks you to choose a color theme:
+Inside an existing project, `init` asks you to choose a color theme:
 
 - **Default** — warm yellow with restrained orange accents.
 - **Monochrome** — black, gray, and off-white.
@@ -65,7 +84,9 @@ You can also use the short executable: `npx qe add button`.
 ## Commands
 
 ```text
-quackelements init [--theme default|monochrome] [--force]
+quackelements init [--theme default|monochrome] [--language tsx|jsx] [--force]
+quackelements create [name] [--template next|vite] [--language tsx|jsx]
+  [--theme default|monochrome] [--install foundation|recommended|all] [--yes]
 quackelements add <component...> [--overwrite]
 quackelements add --all [--overwrite]
 quackelements add --category components|backgrounds [--overwrite]

@@ -3,6 +3,7 @@ import path from "node:path";
 
 export const CONFIG_FILE = "quackelements.json";
 export const THEMES = Object.freeze(["default", "monochrome"]);
+export const LANGUAGES = Object.freeze(["tsx", "jsx"]);
 
 export const DEFAULT_CONFIG = Object.freeze({
   version: 1,
@@ -33,12 +34,19 @@ export async function loadConfig(cwd) {
   }
 
   const parsed = JSON.parse(await readFile(configPath, "utf8"));
-  const config = { ...parsed, theme: parsed.theme ?? "default" };
+  const config = {
+    ...parsed,
+    language: parsed.language ?? "tsx",
+    theme: parsed.theme ?? "default"
+  };
   validateConfig(config);
   return config;
 }
 
-export async function saveDefaultConfig(cwd, { overwrite = false, theme = "default" } = {}) {
+export async function saveDefaultConfig(
+  cwd,
+  { overwrite = false, theme = "default", language = "tsx" } = {}
+) {
   const configPath = path.join(cwd, CONFIG_FILE);
 
   if (!overwrite && (await exists(configPath))) {
@@ -46,7 +54,16 @@ export async function saveDefaultConfig(cwd, { overwrite = false, theme = "defau
   }
 
   validateTheme(theme);
-  const config = { ...DEFAULT_CONFIG, theme };
+  validateLanguage(language);
+  const config = {
+    ...DEFAULT_CONFIG,
+    language,
+    theme,
+    paths: {
+      ...DEFAULT_CONFIG.paths,
+      utils: language === "jsx" ? "src/lib/quack-elements.js" : DEFAULT_CONFIG.paths.utils
+    }
+  };
   await writeFile(configPath, `${JSON.stringify(config, null, 2)}\n`, "utf8");
   return { path: configPath, status: "created" };
 }
@@ -57,6 +74,7 @@ function validateConfig(config) {
   }
 
   validateTheme(config.theme);
+  validateLanguage(config.language);
 
   for (const key of ["components", "hooks", "styles", "utils"]) {
     if (typeof config.paths?.[key] !== "string" || !config.paths[key]) {
@@ -72,5 +90,11 @@ function validateConfig(config) {
 export function validateTheme(theme) {
   if (!THEMES.includes(theme)) {
     throw new Error(`Unknown theme "${theme}". Choose one of: ${THEMES.join(", ")}.`);
+  }
+}
+
+export function validateLanguage(language) {
+  if (!LANGUAGES.includes(language)) {
+    throw new Error(`Unknown language "${language}". Choose one of: ${LANGUAGES.join(", ")}.`);
   }
 }

@@ -2,6 +2,10 @@
 
 ## 0.1.0-alpha.2 — 2026-09-29
 
+- Added interactive project creation for Next.js and Vite.
+- Added TypeScript and generated JavaScript source modes.
+- Added Foundation, Recommended, and Everything installation sets.
+- Added npm, pnpm, Yarn, and Bun scaffold command support.
 - Added selectable Default and Monochrome themes during `init`.
 - Added the original `AetherGrid` and `PrismTiles` animated backgrounds.
 - Added Ribbon, Arc, and Twist light patterns to `PrismTiles`.

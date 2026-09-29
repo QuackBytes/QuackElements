@@ -1,9 +1,10 @@
 import assert from "node:assert/strict";
-import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import test from "node:test";
 import { run } from "../src/cli.js";
+import { buildScaffoldCommands } from "../src/scaffold.js";
 
 test("initializes a project and installs the button source", async () => {
   const project = await mkdtemp(path.join(os.tmpdir(), "quackelements-"));
@@ -171,4 +172,88 @@ test("installs all items in the backgrounds category", async () => {
   } finally {
     await rm(project, { recursive: true, force: true });
   }
+});
+
+test("creates and configures a JavaScript Next.js project", async () => {
+  const parent = await mkdtemp(path.join(os.tmpdir(), "quackelements-create-"));
+
+  try {
+    await run(
+      [
+        "create",
+        "duck-app",
+        "--template",
+        "next",
+        "--language",
+        "jsx",
+        "--theme",
+        "monochrome",
+        "--install",
+        "recommended"
+      ],
+      {
+        cwd: parent,
+        createProject: async ({ cwd, name }) => {
+          const project = path.join(cwd, name);
+          await mkdir(path.join(project, "src", "app"), { recursive: true });
+          await writeFile(path.join(project, "package.json"), JSON.stringify({ name }), "utf8");
+          await writeFile(path.join(project, "src", "app", "globals.css"), '@import "tailwindcss";\n', "utf8");
+          return project;
+        }
+      }
+    );
+
+    const project = path.join(parent, "duck-app");
+    const config = JSON.parse(await readFile(path.join(project, "quackelements.json"), "utf8"));
+    const button = await readFile(path.join(project, "src/components/quack/button.jsx"), "utf8");
+    const globals = await readFile(path.join(project, "src/app/globals.css"), "utf8");
+
+    assert.equal(config.language, "jsx");
+    assert.equal(config.theme, "monochrome");
+    assert.equal(await fileExists(path.join(project, "src/lib/quack-elements.js")), true);
+    assert.equal(await fileExists(path.join(project, "src/components/quack/button.tsx")), false);
+    assert.doesNotMatch(button, /React\.ComponentProps/);
+    assert.match(globals, /styles\/quack-elements\.css/);
+  } finally {
+    await rm(parent, { recursive: true, force: true });
+  }
+});
+
+test("builds deterministic npm scaffold commands", () => {
+  const target = path.join("C:\\projects", "duck-app");
+  const commands = buildScaffoldCommands({
+    name: "duck-app",
+    target,
+    template: "vite",
+    language: "tsx",
+    version: "0.1.0-alpha.2",
+    packageManager: "npm"
+  });
+
+  assert.deepEqual(commands[0].args, [
+    "create",
+    "vite@latest",
+    "duck-app",
+    "--",
+    "--template",
+    "react-ts"
+  ]);
+  assert.equal(commands[1].command, "npm");
+  assert.deepEqual(commands[2].args, [
+    "install",
+    "--save-dev",
+    "quackelements@0.1.0-alpha.2",
+    "tailwindcss",
+    "@tailwindcss/vite"
+  ]);
+});
+
+test("shows help without creating a project", async () => {
+  let createCalled = false;
+  await run(["create", "--help"], {
+    createProject: async () => {
+      createCalled = true;
+    }
+  });
+  assert.equal(createCalled, false);
 });
