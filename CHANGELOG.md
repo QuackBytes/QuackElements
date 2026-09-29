@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.0-alpha.2 — 2026-09-29
+## 0.1.0-alpha.3 — 2026-09-29
 
 - Added interactive project creation for Next.js and Vite.
 - Added TypeScript and generated JavaScript source modes.
