@@ -1,5 +1,7 @@
 import { Alert, AlertDescription, AlertTitle } from "@/components/quack/alert"
 import { Badge } from "@/components/quack/badge"
+import { AetherGrid } from "@/components/quack/backgrounds/aether-grid"
+import { PrismTiles } from "@/components/quack/backgrounds/prism-tiles"
 import { Button } from "@/components/quack/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/quack/card"
 import { Checkbox } from "@/components/quack/checkbox"
@@ -15,7 +17,7 @@ function App() {
         <header className="flex flex-col gap-3 border-b pb-8">
           <div className="flex items-center gap-3">
             <Badge>QuackElements</Badge>
-            <span className="text-sm text-muted-foreground">61 components · preset b2tqESkd9c</span>
+            <span className="text-sm text-muted-foreground">61 components · 2 backgrounds · preset b2tqESkd9c</span>
           </div>
           <h1 className="font-heading text-4xl font-semibold tracking-tight">Component workbench</h1>
           <p className="max-w-2xl text-muted-foreground">
@@ -62,6 +64,39 @@ function App() {
               </div>
             </CardContent>
           </Card>
+        </section>
+
+        <section className="grid gap-3">
+          <div>
+            <p className="text-sm font-medium text-amber-500">Backgrounds</p>
+            <h2 className="font-heading text-2xl font-semibold tracking-tight">Aether Grid</h2>
+          </div>
+          <AetherGrid
+            className="min-h-[420px] rounded-2xl border border-white/10"
+            origin="right"
+            color="#f59e0b"
+          >
+            <div className="flex min-h-[420px] max-w-xl flex-col justify-center gap-5 p-10 text-white md:p-14">
+              <Badge className="w-fit border-amber-400/20 bg-amber-400/10 text-amber-300">
+                Original QuackElements background
+              </Badge>
+              <h3 className="font-heading text-4xl font-semibold tracking-tight md:text-5xl">
+                Digital light, shaped like a night sky.
+              </h3>
+              <p className="max-w-md text-base leading-7 text-white/60">
+                A deterministic field of square stars with directional density, individual shimmer,
+                and reduced-motion support.
+              </p>
+            </div>
+          </AetherGrid>
+        </section>
+
+        <section className="grid gap-3">
+          <div>
+            <p className="text-sm font-medium text-fuchsia-400">Backgrounds</p>
+            <h2 className="font-heading text-2xl font-semibold tracking-tight">Prism Tiles</h2>
+          </div>
+          <PrismTiles className="min-h-[420px] rounded-2xl border border-white/10" />
         </section>
 
         <Alert>

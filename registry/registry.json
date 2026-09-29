@@ -17,6 +17,20 @@
       ]
     },
     {
+      "name": "aether-grid",
+      "type": "background",
+      "category": "backgrounds",
+      "description": "QuackElements Aether Grid animated background.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "aether-grid.tsx",
+          "target": "backgrounds/aether-grid.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
       "name": "alert",
       "type": "component",
       "description": "QuackElements Alert component.",
@@ -565,6 +579,20 @@
         {
           "source": "popover.tsx",
           "target": "popover.tsx",
+          "targetRoot": "components"
+        }
+      ]
+    },
+    {
+      "name": "prism-tiles",
+      "type": "background",
+      "category": "backgrounds",
+      "description": "QuackElements Prism Tiles animated background.",
+      "dependencies": [],
+      "files": [
+        {
+          "source": "prism-tiles.tsx",
+          "target": "backgrounds/prism-tiles.tsx",
           "targetRoot": "components"
         }
       ]

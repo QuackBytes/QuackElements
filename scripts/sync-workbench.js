@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url"
 const packageRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..")
 const registryRoot = path.join(packageRoot, "registry")
 const componentSource = path.join(packageRoot, "workbench", "src", "components", "quack")
+const backgroundSource = path.join(componentSource, "backgrounds")
 const hookSource = path.join(packageRoot, "workbench", "src", "hooks")
 const foundationSource = path.join(packageRoot, "workbench", "src")
 
@@ -18,6 +19,10 @@ for (const item of previousManifest.items ?? []) {
 }
 
 const componentFiles = (await readdir(componentSource))
+  .filter((file) => file.endsWith(".tsx"))
+  .sort()
+
+const backgroundFiles = (await readdir(backgroundSource))
   .filter((file) => file.endsWith(".tsx"))
   .sort()
 
@@ -39,6 +44,26 @@ for (const file of componentFiles) {
     description: `QuackElements ${toTitle(name)} component.`,
     dependencies: [...new Set([...dependencies, ...hookDependencies])].sort(),
     files: [{ source: file, target: file, targetRoot: "components" }],
+  })
+}
+
+for (const file of backgroundFiles) {
+  const name = file.replace(/\.tsx$/, "")
+  const content = await readFile(path.join(backgroundSource, file), "utf8")
+  const dependencies = collectMatches(content, /@\/components\/quack\/([a-z0-9-]+)/g)
+  const hookDependencies = collectMatches(content, /@\/hooks\/([a-z0-9-]+)/g)
+  const itemDirectory = path.join(registryRoot, name)
+
+  await mkdir(itemDirectory, { recursive: true })
+  await writeFile(path.join(itemDirectory, file), content, "utf8")
+
+  items.push({
+    name,
+    type: "background",
+    category: "backgrounds",
+    description: `QuackElements ${toTitle(name)} animated background.`,
+    dependencies: [...new Set([...dependencies, ...hookDependencies])].sort(),
+    files: [{ source: file, target: `backgrounds/${file}`, targetRoot: "components" }],
   })
 }
 
@@ -66,6 +91,10 @@ await mkdir(foundationRoot, { recursive: true })
 
 const theme = (await readFile(path.join(foundationSource, "index.css"), "utf8"))
   .replace('./styles/quack-tailwind.css', './quack-tailwind.css')
+  .replace(
+    '@import "./quack-tailwind.css";',
+    '@import "./quack-tailwind.css";\n@import "./quack-theme.css";'
+  )
 
 await writeFile(path.join(foundationRoot, "quack-elements.css"), theme, "utf8")
 await writeFile(
@@ -92,7 +121,9 @@ await writeFile(
   "utf8"
 )
 
-console.log(`Synced ${componentFiles.length} components into the QuackElements registry.`)
+console.log(
+  `Synced ${componentFiles.length} components and ${backgroundFiles.length} backgrounds into the QuackElements registry.`
+)
 
 function collectMatches(content, pattern) {
   return [...content.matchAll(pattern)].map((match) => match[1])

@@ -21,7 +21,7 @@ export async function run(argv, options = {}) {
       await add(cwd, args);
       break;
     case "list":
-      await list();
+      await list(args);
       break;
     case "doctor":
       await doctor(cwd);
@@ -111,11 +111,24 @@ function formatTheme(theme) {
 async function add(cwd, args) {
   const overwrite = args.includes("--overwrite");
   const addAll = args.includes("--all");
-  let names = args.filter((arg) => !arg.startsWith("--"));
+  const category = readOption(args, "--category");
+  let names = args.filter(
+    (arg, index) => !arg.startsWith("--") && args[index - 1] !== "--category"
+  );
 
-  if (addAll) {
+  if (category && category !== "components" && category !== "backgrounds") {
+    throw new Error('Unknown category. Choose one of: components, backgrounds.');
+  }
+
+  if (addAll || category) {
     const registry = await getRegistry();
-    names = registry.items.filter((item) => item.type === "component").map((item) => item.name);
+    names = registry.items
+      .filter((item) => {
+        if (category === "backgrounds") return item.type === "background";
+        if (category === "components") return item.type === "component";
+        return item.type === "component" || item.type === "background";
+      })
+      .map((item) => item.name);
   }
 
   if (names.length === 0) {
@@ -131,11 +144,20 @@ async function add(cwd, args) {
   }
 }
 
-async function list() {
+async function list(args) {
   const registry = await getRegistry();
-  console.log("Available QuackElements components:\n");
-  for (const item of registry.items) {
-    console.log(`  ${item.name.padEnd(16)} ${item.description}`);
+  const category = readOption(args, "--category");
+  if (category && category !== "components" && category !== "backgrounds") {
+    throw new Error('Unknown category. Choose one of: components, backgrounds.');
+  }
+
+  console.log("Available QuackElements items:\n");
+  for (const item of registry.items.filter((entry) => {
+    if (category === "backgrounds") return entry.type === "background";
+    if (category === "components") return entry.type === "component";
+    return true;
+  })) {
+    console.log(`  ${item.name.padEnd(18)} ${(item.category ?? `${item.type}s`).padEnd(12)} ${item.description}`);
   }
 }
 
@@ -184,7 +206,8 @@ Usage:
   quackelements init [--theme default|monochrome] [--force]
   quackelements add <component...> [--overwrite]
   quackelements add --all [--overwrite]
-  quackelements list
+  quackelements add --category components|backgrounds [--overwrite]
+  quackelements list [--category components|backgrounds]
   quackelements doctor
 
 Aliases:

@@ -109,3 +109,66 @@ test("keeps locally edited component files unless overwrite is requested", async
     await rm(project, { recursive: true, force: true });
   }
 });
+
+test("installs an animated background into the backgrounds directory", async () => {
+  const project = await mkdtemp(path.join(os.tmpdir(), "quackelements-"));
+
+  try {
+    await writeFile(path.join(project, "package.json"), JSON.stringify({ name: "fixture" }), "utf8");
+    await run(["init", "--theme", "default"], { cwd: project });
+    await run(["add", "aether-grid"], { cwd: project });
+
+    const background = await readFile(
+      path.join(project, "src/components/quack/backgrounds/aether-grid.tsx"),
+      "utf8"
+    );
+
+    assert.match(background, /function AetherGrid/);
+    assert.match(background, /data-qe-slot="aether-grid"/);
+    assert.match(background, /prefers-reduced-motion/);
+  } finally {
+    await rm(project, { recursive: true, force: true });
+  }
+});
+
+test("installs prism tiles into the backgrounds directory", async () => {
+  const project = await mkdtemp(path.join(os.tmpdir(), "quackelements-"));
+
+  try {
+    await writeFile(path.join(project, "package.json"), JSON.stringify({ name: "fixture" }), "utf8");
+    await run(["init", "--theme", "default"], { cwd: project });
+    await run(["add", "prism-tiles"], { cwd: project });
+
+    const background = await readFile(
+      path.join(project, "src/components/quack/backgrounds/prism-tiles.tsx"),
+      "utf8"
+    );
+
+    assert.match(background, /function PrismTiles/);
+    assert.match(background, /data-qe-slot="prism-tiles"/);
+    assert.match(background, /prefers-reduced-motion/);
+  } finally {
+    await rm(project, { recursive: true, force: true });
+  }
+});
+
+test("installs all items in the backgrounds category", async () => {
+  const project = await mkdtemp(path.join(os.tmpdir(), "quackelements-"));
+
+  try {
+    await writeFile(path.join(project, "package.json"), JSON.stringify({ name: "fixture" }), "utf8");
+    await run(["init", "--theme", "monochrome"], { cwd: project });
+    await run(["add", "--category", "backgrounds"], { cwd: project });
+
+    assert.equal(
+      await fileExists(path.join(project, "src/components/quack/backgrounds/aether-grid.tsx")),
+      true
+    );
+    assert.equal(
+      await fileExists(path.join(project, "src/components/quack/backgrounds/prism-tiles.tsx")),
+      true
+    );
+  } finally {
+    await rm(project, { recursive: true, force: true });
+  }
+});

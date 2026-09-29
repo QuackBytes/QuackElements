@@ -17,6 +17,7 @@
 npm install --save-dev quackelements@alpha
 npx quackelements init
 npx quackelements add button
+npx quackelements add aether-grid
 ```
 
 `init` asks you to choose a color theme:
@@ -35,6 +36,12 @@ Install the complete component catalog when you need it:
 
 ```bash
 npx quackelements add --all
+```
+
+Install a complete catalog category when you only need a certain kind of element:
+
+```bash
+npx quackelements add --category backgrounds
 ```
 
 Import the generated token stylesheet once in the application entry file:
@@ -61,8 +68,25 @@ You can also use the short executable: `npx qe add button`.
 quackelements init [--theme default|monochrome] [--force]
 quackelements add <component...> [--overwrite]
 quackelements add --all [--overwrite]
-quackelements list
+quackelements add --category components|backgrounds [--overwrite]
+quackelements list [--category components|backgrounds]
 quackelements doctor
+```
+
+## Backgrounds
+
+Animated backgrounds are installed under `src/components/quack/backgrounds` and are designed to wrap normal page content. The first original QuackElements background is **Aether Grid**, a field of small digital lights inspired by the night sky:
+
+```tsx
+import { AetherGrid } from "@/components/quack/backgrounds/aether-grid";
+
+export function Hero() {
+  return (
+    <AetherGrid className="min-h-[480px]" origin="right">
+      <div className="relative z-10 p-12">Your content</div>
+    </AetherGrid>
+  );
+}
 ```
 
 Project paths and the selected theme are controlled by the generated `quackelements.json` file. Theme tokens are installed into `src/styles/quack-theme.css`, so teams can tune the selected palette without editing component source.
